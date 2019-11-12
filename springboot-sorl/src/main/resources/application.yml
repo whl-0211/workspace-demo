@@ -1,0 +1,21 @@
+spring:
+    data:
+        solr:
+            host: http://127.0.0.1:8080/solr
+        thymeleaf:
+            cache: false
+            mode: LEGACYHTML5
+            prefix: classpath:/templates/
+            suffix: .html
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        password: root
+        url: jdbc:mysql://localhost:3306/1905?useUnicode=true&characterEncoding=utf-8
+        username: root
+server:
+    port: 8081
+mybatis:
+    config-locations: classpath:mapping/confg.xml
+    mapper-locations: classpath:mapping/mapper/*.xml
+    type-aliases-package: com.jk.model
+

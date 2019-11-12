@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.CarDao" >
+
+
+  <select id="queryCarList" resultType="com.jk.model.Car">
+    SELECT  * FROM t_car;
+  </select>
+  <select id="queryCar" resultType="java.util.LinkedHashMap">
+    select count(*) y,typeId 类型 from t_car group by typeId
+  </select>
+
+  <delete id="delete" >
+    delete from t_car where carId = #{carId}
+  </delete>
+
+
+
+  <insert id="addCar" parameterType="com.jk.model.Car" >
+    <selectKey keyProperty="carId" order="AFTER" resultType="int">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_car(carName,carPrice,carTime)
+    values (#{carName},#{carPrice},#{carTime})
+  </insert>
+
+  <select id="getById" resultType="com.jk.model.Car" >
+    select * from t_car where carId = #{carId}
+  </select>
+
+  <!--<update id="updateCar" >
+    update t_shangpin
+    set sname = #{sname}, stype = #{stype}, sprice = #{sprice}
+    where sid = #{sid}
+  </update>-->
+</mapper>
